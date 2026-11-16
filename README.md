@@ -5,6 +5,7 @@ managing a user shopping cart, and placing orders. It includes a server-rendered
 HTML interface, Django authentication, product and category management through
 the admin site, address management, checkout, and order history.
 
+
 ## Features
 
 - Browse an active product catalogue and view product details.
