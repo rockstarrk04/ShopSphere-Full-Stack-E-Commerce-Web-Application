@@ -1,0 +1,20 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<main>
+    <h1>Your orders</h1>
+    {% for order in orders %}
+        <section>
+            <h2>Order #{{ order.id }}</h2>
+            <p>Status: {{ order.get_status_display }}</p>
+            <p>Total: ₹{{ order.total_amount }}</p>
+            <p>Placed: {{ order.created_at }}</p>
+            {% for item in order.items.all %}
+                <p>{{ item.product.pname }} — {{ item.quantity }} × ₹{{ item.price }}</p>
+            {% endfor %}
+        </section>
+    {% empty %}
+        <p>You have not placed any orders yet.</p>
+    {% endfor %}
+</main>
+{% endblock %}

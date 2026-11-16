@@ -1,0 +1,59 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/profile-update.css' %}">
+{% endblock %}
+
+{% block content %}
+    <main class="profile-update-page">
+        <section class="profile-update-card">
+            <header class="profile-update-header">
+                <p>Account settings</p>
+                <h1>Update your profile</h1>
+                <span>Keep your personal details up to date.</span>
+            </header>
+
+            {% if messages %}
+                <div class="profile-update-messages" role="status">
+                    {% for i in messages %}
+                        <p>{{ i }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <form class="profile-update-form" action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+                <div class="profile-photo-field">
+                    <img src="{{ img.image.url }}" alt="Current profile picture">
+                    <div class="profile-photo-input">
+                        <label for="profile-image">Profile picture</label>
+                        <input type="file" name="image" id="profile-image" accept="image/*">
+                    </div>
+                </div>
+
+                <div class="profile-form-fields">
+                    <div class="profile-form-field">
+                        <label for="first-name">First name</label>
+                        <input type="text" id="first-name" name="first_name" placeholder="Enter your first name" value="{{ user.first_name }}">
+                    </div>
+
+                    <div class="profile-form-field">
+                        <label for="last-name">Last name</label>
+                        <input type="text" id="last-name" name="last_name" placeholder="Enter your last name" value="{{ user.last_name }}">
+                    </div>
+
+                    <div class="profile-form-field profile-form-field-wide">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email" required value="{{ user.email }}">
+                    </div>
+                </div>
+
+                <div class="profile-update-actions">
+                    <a href="{% url 'profile' %}">Cancel</a>
+                    <button type="submit">Save changes</button>
+                </div>
+            </form>
+        </section>
+    </main>
+{% endblock %}

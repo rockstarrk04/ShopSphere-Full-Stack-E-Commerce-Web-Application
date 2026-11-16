@@ -1,0 +1,66 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/address.css' %}">
+{% endblock %}
+
+{% block content %}
+<main class="address-page">
+    <section class="address-card">
+        <header class="address-header">
+            <p>Delivery details</p>
+            <h1>Add an address</h1>
+            <span>Where should we deliver your order?</span>
+        </header>
+
+        <form class="address-form" action="" method="POST">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+
+            <div class="address-fields">
+                <div class="address-field">
+                    {{ form.fullname.label_tag }}
+                    {{ form.fullname }}
+                    {{ form.fullname.errors }}
+                </div>
+                <div class="address-field">
+                    {{ form.mobile.label_tag }}
+                    {{ form.mobile }}
+                    {{ form.mobile.errors }}
+                </div>
+                <div class="address-field address-field-wide">
+                    {{ form.address_line.label_tag }}
+                    {{ form.address_line }}
+                    {{ form.address_line.errors }}
+                </div>
+                <div class="address-field">
+                    {{ form.city.label_tag }}
+                    {{ form.city }}
+                    {{ form.city.errors }}
+                </div>
+                <div class="address-field">
+                    {{ form.state.label_tag }}
+                    {{ form.state }}
+                    {{ form.state.errors }}
+                </div>
+                <div class="address-field">
+                    {{ form.pincode.label_tag }}
+                    {{ form.pincode }}
+                    {{ form.pincode.errors }}
+                </div>
+                <div class="address-default">
+                    {{ form.is_default }}
+                    {{ form.is_default.label_tag }}
+                    {{ form.is_default.errors }}
+                </div>
+            </div>
+
+            <div class="address-actions">
+                <a href="{% url 'check_out' %}">Cancel</a>
+                <button type="submit">Save address</button>
+            </div>
+        </form>
+    </section>
+</main>
+{% endblock %}

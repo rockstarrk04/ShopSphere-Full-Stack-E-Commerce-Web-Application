@@ -1,0 +1,61 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/cart.css' %}">
+{% endblock %}
+
+{% block content %}
+<main class="cart-page">
+    <header class="cart-header">
+        <p class="cart-eyebrow">Your shopping bag</p>
+        <h1>Shopping Cart</h1>
+    </header>
+    <div class="cart-table-wrap">
+        <table class="cart-table">
+            <thead>
+                <tr>
+                    <th scope="col">Sl no</th>
+                    <th scope="col">Product</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Subtotal</th>
+                    <th scope="col">Remove</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in cart_item %}
+                    <tr>
+                        <td class="cart-index">{{ forloop.counter }}</td>
+                        <td>
+                            <img class="cart-product-image" src="{{ i.product_c.pimage.url }}" alt="{{ i.product_c.pname }}">
+
+                        </td>
+                        <td class="cart-product-name">
+                            {{ i.product_c.pname }}
+                            <a href="{% url 'view_product' i.product_c.id %}">View More</a>
+                        </td>
+                        <td class="cart-price">₹{{ i.product_c.price }}</td>
+                        <td>
+                            <div class="quantity-control">
+                                <a href="{% url 'minus' i.id %}" aria-label="Decrease quantity">−</a>
+                                <span>{{ i.product_count }}</span>
+                                <a href="{% url 'plus' i.id %}" aria-label="Increase quantity">+</a>
+                            </div>
+                        </td>
+                        <td class="cart-total">₹{{ i.total_price }}</td>
+                        <td><a class="cart-remove" href="{% url 'remove' i.id %}">Remove</a></td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td class="cart-empty" colspan="7">Your cart is empty.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <h1>Total Price : {{TA}}</h1>
+    <a href="{% url 'check_out' %}">Check out</a>
+</main>
+{% endblock %}

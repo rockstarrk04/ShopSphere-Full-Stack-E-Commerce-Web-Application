@@ -1,0 +1,17 @@
+{% extends 'main.html' %}
+
+{% block content %}
+    <center>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <label for="">UserName:</label>
+            <input type="text" placeholder="enter username" name="uname" disabled value="{{user.username}}"> <br><br>
+            <label for="">Enter New Password:</label>
+            <input type="password" placeholder="enter Password" name="newpass"> <br><br>
+            
+            <label for="">Enter Old Password:</label>
+            <input type="password" placeholder="enter Password" name="pldpass"> <br><br>
+            
+        </form>
+    </center>
+{% endblock %}

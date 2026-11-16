@@ -1,0 +1,195 @@
+:root {
+    --brand: #0f766e;
+    --brand-dark: #115e59;
+    --brand-deep: #134e4a;
+    --brand-bright: #14b8a6;
+    --brand-soft: #e6f4f1;
+    --brand-pale: #f0fdfa;
+    --accent: #c2410c;
+    --accent-bright: #f97316;
+    --accent-soft: #fff7ed;
+    --nav-bg: rgba(19, 78, 74, 0.94);
+    --nav-border: rgba(153, 246, 228, 0.22);
+    --nav-text: #ccfbf1;
+    --nav-text-soft: #f0fdfa;
+    --nav-accent: var(--brand);
+    --nav-accent-2: var(--accent-bright);
+    --nav-hover: rgba(20, 184, 166, 0.18);
+    --nav-shadow: rgba(19, 78, 74, 0.18);
+    --page-bg: linear-gradient(135deg, #f8fafc 0%, #e6f4f1 100%);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--page-bg);
+    min-height: 100vh;
+    color: var(--brand-deep);
+}
+
+.top-nav {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    width: 100%;
+    min-height: 82px;
+    padding: 14px 5vw;
+    background: var(--nav-bg);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--nav-border);
+    box-shadow: 0 12px 30px var(--nav-shadow);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    min-width: 180px;
+}
+
+.logo h1 {
+    margin: 0;
+    font-size: clamp(1.6rem, 2vw, 2.2rem);
+    font-weight: 800;
+    letter-spacing: -0.06em;
+    color: #f0fdfa;
+    text-shadow: 0 0 18px rgba(20, 184, 166, 0.42);
+}
+
+.quick-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.mini-form {
+    display: flex;
+    align-items: center;
+}
+
+.nav-action-btn {
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--nav-text);
+    padding: 10px 18px;
+    border-radius: 999px;
+    cursor: pointer;
+    font-size: 0.87rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    transition: all 0.25s ease;
+}
+
+.nav-action-btn:hover {
+    background: rgba(20, 184, 166, 0.22);
+    border-color: rgba(94, 234, 212, 0.7);
+    transform: translateY(-1px);
+}
+
+.secondary-btn {
+    background: rgba(249, 115, 22, 0.12);
+    border-color: rgba(249, 115, 22, 0.35);
+}
+
+.secondary-btn:hover {
+    background: rgba(249, 115, 22, 0.2);
+}
+
+.links {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.nav-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: var(--nav-text-soft);
+    text-decoration: none;
+    font-size: 0.92rem;
+    font-weight: 600;
+    padding: 10px 16px;
+    border-radius: 10px;
+    transition: all 0.25s ease;
+    white-space: nowrap;
+}
+
+.nav-link:hover {
+    background: var(--nav-hover);
+    color: #ffffff;
+    transform: translateY(-1px);
+}
+
+.nav-btn {
+    background: linear-gradient(135deg, var(--nav-accent), #0d9488);
+    color: #ffffff;
+    box-shadow: 0 8px 20px rgba(15, 118, 110, 0.3);
+}
+
+.nav-btn:hover {
+    background: linear-gradient(135deg, var(--brand-dark), var(--nav-accent));
+    color: #ffffff;
+}
+
+.profile-link {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.profile-image {
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+@media (max-width: 900px) {
+    .top-nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        padding-top: 18px;
+        padding-bottom: 18px;
+    }
+
+    .logo,
+    .quick-actions,
+    .links {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 520px) {
+    .top-nav {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+    .quick-actions {
+        gap: 8px;
+    }
+
+    .nav-action-btn,
+    .nav-link {
+        width: 100%;
+    }
+
+    .links {
+        gap: 8px;
+    }
+}

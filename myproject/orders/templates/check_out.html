@@ -1,0 +1,44 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/checkout.css' %}">
+{% endblock %}
+
+{% block content %}
+<main class="checkout-page">
+    <section class="checkout-card">
+        <p class="checkout-eyebrow">Almost there</p>
+        <h1>Checkout</h1>
+        <p class="checkout-description">Choose or add a delivery address to continue with your order.</p>
+        <a class="checkout-button" href="{% url 'address' %}">Continue to addresses</a>
+    </section>
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        {% for i in address_list %}
+        <input type="radio" name="address" value="{{i.id}}" required>
+        Fullname : {{i.fullname}} <br>
+        Mobile : {{i.mobile}} <br>
+        Address line:{{i.address_line}} <br>
+        city:{{i.city}} <br>
+        State : {{i.state}} <br>
+        Pincode : {{i.pincode}} <br>
+        default:
+        {% if i.is_default %}
+        <h2>☑️</h2>
+        {% else %}
+        <h2>❌</h2>
+        {% endif %}
+        {% endfor %}
+        <br><br><br>
+        {% for i in cart_item %}
+        <img src="{{i.product_c.pimage.url}}" alt="" style="height: 50px;width: 50px;"> <br>
+        {{i.product_c.pname}} <br>
+        {{i.product_c.price}} * {{i.product_count}} = {{i.total_price}}<br>
+        {% endfor %}
+        <h2>Grand Total : {{grand_total}}</h2>
+        <button type="submit">Place Order</button>
+    </form>
+</main>
+{% endblock %}

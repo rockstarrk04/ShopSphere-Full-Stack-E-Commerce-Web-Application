@@ -1,0 +1,41 @@
+{% extends 'main.html' %}
+{% load static%}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
+
+
+
+{% block content %}
+    <h1>View product</h1>
+
+    <div class="view_product">
+        <div class="product-card">
+            <img src="{{ product.pimage.url }}" alt="{{ product.pname }}">
+            <p>{{ product.pname }}</p>
+            <p>₹{{ product.price }}</p>
+            <p>{{ product.pdesc }}</p>
+            <p>Qty: {{ product.quantity }}</p>
+            <p>{{ product.is_available }}</p>
+            <a href="{% url 'add_to_cart' product.id %}">Add to Cart</a>
+            <a href="{% url 'home' %}">Back</a>
+        </div>
+    </div>
+    <div class="related_product">
+    <div class="related_product_card">
+        {% for i in related_products %}
+        <div class="product-card">
+            <img src="{{ i.pimage.url }}" alt="{{ i.pname }}">
+            <p>{{ i.pname }}</p>
+            <p>₹{{ i.price }}</p>
+            <p>{{ i.pdesc }}</p>
+            <p>Qty: {{ i.quantity }}</p>
+            <p>{{ i.is_available }}</p>
+            <a href="{% url 'add_to_cart' i.id %}">Add to Cart</a>
+            <button><a href="{%  url 'view_product' i.id %}"> View Product </a></button>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
+
+{% block content %}
+    <!-- <h2>home page</h2> -->
+   
+
+    {% if trend_msg %}
+        <h1>No products</h1>
+    {% endif %}
+    
+    
+    
+    {% for i in category %}
+    <form action="" method="GET">
+        <input type="submit" value="{{i}}" name="category">
+    </form>
+    {% endfor %}
+    
+    {% if messages %}
+        {% for i in messages %}
+            <h1>{{i}}</h1>
+        {% endfor %}
+    {% endif %}
+
+
+    <div class="product-grid">
+        {% for i in products %}
+            <div class="product-card">
+                <img src="{{ i.pimage.url }}" alt="{{ i.pname }}">
+                <p>{{ i.pname }}</p>
+                <p>₹{{ i.price }}</p>
+                <p>{{ i.pdesc }}</p>
+                <p>Qty: {{ i.quantity }}</p>
+                <p>{{ i.is_available }}</p>
+                <button><a href="{% url 'add_to_cart' i.id %}">Add to Cart</a></button>
+                <button><a href="{%  url 'view_product' i.id %}"> View Product </a></button>
+                
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
